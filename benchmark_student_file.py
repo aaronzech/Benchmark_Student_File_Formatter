@@ -100,4 +100,6 @@ if __name__ == "__main__":
     
     mergeSheets(student_file,clever_file)
     formatSheet('merge.xlsx')
+    cleverData = pd.read_excel('merge.xlsx',sheet_name='Sheet1')
+    cleverData.to_csv("students_IMPORT.csv",index=False)
     print("finished")
