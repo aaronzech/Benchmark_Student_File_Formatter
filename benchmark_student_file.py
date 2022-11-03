@@ -10,30 +10,18 @@ import tkinter as tk
 from tkinter import filedialog
 root = tk.Tk()
 root.withdraw()
+
 print("Select student file")
 student_file = filedialog.askopenfilename()
+print("Student Synergy File:",student_file)
 print("Select clever file")
 clever_file = filedialog.askopenfilename()
+print("Clever File:",student_file)
 
 #convert to XLSX format
 clever_file = pd.read_csv (clever_file)
 clever_file.to_excel (r'clever.xlsx', index = None, header=True)
 clever_file = 'clever.xlsx'
-
-
-
-#print(ws)
-
-#print(ws['A1'].value) # Read value at A1
-
-#ws['M2'].value = "TEST" # Change value at A2
-#wb.save('Classes.xlsx')
-
-# for row in range (1,900): #stops at row 10
-#     for col in range (1,7): #columns 1 -4
-#         char = get_column_letter(col)
-#         print(ws[char + str(row)].value)
-
 
 # Change the Kindergarten Grade code from KF or 25 to K
 def fixKindergartenGradeLevel(file):
@@ -47,6 +35,7 @@ def fixKindergartenGradeLevel(file):
     wb.save(file)
             
 
+# Alter the Clever file 
 def formatCleverFile(file):
     wb = load_workbook(file) #Load Workbook
     ws = wb.active #Worksheet
@@ -97,7 +86,6 @@ if __name__ == "__main__":
     print("Starting...")
     fixKindergartenGradeLevel(student_file)
     formatCleverFile(clever_file)
-    
     mergeSheets(student_file,clever_file)
     formatSheet('merge.xlsx')
     cleverData = pd.read_excel('merge.xlsx',sheet_name='Sheet1')
