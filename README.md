@@ -1,7 +1,13 @@
 # Benchmark_Student_File_Formatter
 Formats the Benchmark students.csv import file 
 
-Directions
+<H1>Prerequisites</h1>
+Have the following Python libraries installed.
+<ul><li> <a href="https://openpyxl.readthedocs.io/en/stable/">openpyxl</li>
+<li><a href="https://docs.python.org/3/library/tkinter.html">tkinter</li>
+<li><a href="https://pandas.pydata.org/">pandas</li></ul>
+
+<h1>Directions</h1>
 1) Download the "Benchmark Pilot Studnet CSV" query from Synergy and save to downloads folder
 ![](https://github.com/aaronzech/images/blob/main/Screenshot_214.png)
 2) Download the students.csv file from Clever on the Benchmark application page
