@@ -2,10 +2,6 @@ import openpyxl
 import pandas as pd
 from openpyxl import Workbook,load_workbook
 from openpyxl.utils import get_column_letter
-
-#student_file = 'students.xlsx'
-#clever_file = 'clever.xlsx'
-
 import tkinter as tk
 from tkinter import filedialog
 root = tk.Tk()
@@ -16,21 +12,23 @@ student_file = filedialog.askopenfilename()
 print("Student Synergy File:",student_file)
 print("Select clever file")
 clever_file = filedialog.askopenfilename()
-print("Clever File:",student_file)
+print("Clever File:",clever_file)
 
 #convert to XLSX format
 clever_file = pd.read_csv (clever_file)
 clever_file.to_excel (r'clever.xlsx', index = None, header=True)
 clever_file = 'clever.xlsx'
 
-# Change the Kindergarten Grade code from KF or 25 to K
+# Change the Kindergarten Grade code from KF or 25 to K / Kindergarten to K / IEP Kindergarten to K
 def fixKindergartenGradeLevel(file):
     wb = load_workbook(file) #Load Workbook
     ws = wb.active #Worksheet
-    for row in range (1,900): #stops at row 900
+    for row in range (1,1500): #stops at row 1500
         for col in range (10,11): # column J
             char = get_column_letter(col)
             if ws[char + str(row)].value == "KF" or ws[char + str(row)].value == "25":
+                ws[char + str(row)].value = 'K'
+            if ws[char + str(row)].value == "Kindergarten" or ws[char + str(row)].value == "IEP Kindergarten":
                 ws[char + str(row)].value = 'K'
     wb.save(file)
             
@@ -68,7 +66,7 @@ def formatSheet(file):
          #print(ws[char + str(row)].value)
     
     #Move Column M to Column K
-    for row in range (1,900): #stops at row 10
+    for row in range (1,1500): #stops at row 10
      for col in range (11,12): #columns 1 -4
         char = get_column_letter(col)
        
@@ -81,7 +79,6 @@ def formatSheet(file):
 
 
 #Main Program 
-
 if __name__ == "__main__":
     print("Starting...")
     fixKindergartenGradeLevel(student_file)
