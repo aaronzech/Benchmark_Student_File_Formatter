@@ -7,17 +7,9 @@ from tkinter import filedialog
 root = tk.Tk()
 root.withdraw()
 
-print("Select student file")
-student_file = filedialog.askopenfilename()
-print("Student Synergy File:",student_file)
-print("Select clever file")
-clever_file = filedialog.askopenfilename()
-print("Clever File:",clever_file)
 
-#convert to XLSX format
-clever_file = pd.read_csv (clever_file)
-clever_file.to_excel (r'clever.xlsx', index = None, header=True)
-clever_file = 'clever.xlsx'
+
+
 
 # Change the Kindergarten Grade code from KF or 25 to K / Kindergarten to K / IEP Kindergarten to K
 def fixKindergartenGradeLevel(file):
@@ -81,10 +73,28 @@ def formatSheet(file):
 #Main Program 
 if __name__ == "__main__":
     print("Starting...")
+
+    # Have User pick the files
+    print("Select Synergy student file")
+    student_file = filedialog.askopenfilename()
+    print("Student Synergy File:",student_file)
+    print("Select clever file")
+    clever_file = filedialog.askopenfilename()
+    print("Clever File:",clever_file)
+
+    #convert to XLSX format
+    clever_file = pd.read_csv (clever_file)
+    clever_file.to_excel (r'clever.xlsx', index = None, header=True)
+    clever_file = 'clever.xlsx'
+
+    #Sheet Formatting Functions
     fixKindergartenGradeLevel(student_file)
     formatCleverFile(clever_file)
     mergeSheets(student_file,clever_file)
     formatSheet('merge.xlsx')
+
+    #Make Import File
     cleverData = pd.read_excel('merge.xlsx',sheet_name='Sheet1')
     cleverData.to_csv("students_IMPORT.csv",index=False)
-    print("finished")
+
+    print("\NFINISHED\N Use students_IMPORT.csv to import into Benchmark")
