@@ -97,4 +97,4 @@ if __name__ == "__main__":
     cleverData = pd.read_excel('merge.xlsx',sheet_name='Sheet1')
     cleverData.to_csv("students_IMPORT.csv",index=False)
 
-    print("\NFINISHED\N Use students_IMPORT.csv to import into Benchmark")
+    print("\nFINISHED\n-------------------\n * Use students_IMPORT.csv to import into Benchmark * ")
